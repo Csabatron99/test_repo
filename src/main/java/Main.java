@@ -1,20 +1,22 @@
+import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.json.JsonWriteFeature;
+import com.fasterxml.jackson.core.util.DefaultIndenter;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
-import lombok.*;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<Comment> comments = new ArrayList<>();
 
-        Post p = new Post();
+        List<Comment> comments = new ArrayList<>();
 
         Comment comm = new Comment();
                 comm.setId("1");
@@ -23,8 +25,9 @@ public class Main {
                 comm.setDescription("Alma");
 
         comments.add(comm);
+
         Post post = new Post();
-             post.setId("1");
+             post.setId(1);
              post.setTitle("Alma");
              post.setUser("Soviet");
              post.setDate("2021/09/28");
@@ -32,22 +35,20 @@ public class Main {
              post.setDescription("Sample Post");
              post.setComments(comments);
 
-        String serialized = new ObjectMapper().writeValueAsString(post);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        //objectMapper.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
+        //objectMapper.configure(JsonGenerator.Feature.QUOTE_NON_NUMERIC_NUMBERS, false);
+        //objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+        DefaultPrettyPrinter printer = new DefaultPrettyPrinter();
+        printer.indentArraysWith(new DefaultIndenter());
+
+        String serialized = objectMapper
+                .writerWithDefaultPrettyPrinter()
+                .writeValueAsString(post);
+
 
         objectMapper.writeValue(new File("car.json"), serialized);
 
-/*
-        Item myItem = new Item();
-        User user = new User();
-        user.id = 2;
-        user.name = "TheUser";
-        myItem.id=1;
-        myItem.itemName="item";
-        myItem.owner = user;
-
-        String serialized = new ObjectMapper().writeValueAsString(myItem);
-
-        objectMapper.writeValue(new File("car.json"), serialized);
-*/
     }
 }
