@@ -15,6 +15,5 @@ public class Post {
     private String date;
     private Status status;
     private String description;
-    @JsonRawValue
     private List<Comment> comments;
 }

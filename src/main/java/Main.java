@@ -40,15 +40,15 @@ public class Main {
         //objectMapper.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
         //objectMapper.configure(JsonGenerator.Feature.QUOTE_NON_NUMERIC_NUMBERS, false);
         //objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-        DefaultPrettyPrinter printer = new DefaultPrettyPrinter();
+        /*DefaultPrettyPrinter printer = new DefaultPrettyPrinter();
         printer.indentArraysWith(new DefaultIndenter());
 
         String serialized = objectMapper
                 .writerWithDefaultPrettyPrinter()
-                .writeValueAsString(post);
+                .writeValueAsString(post);*/
 
 
-        objectMapper.writeValue(new File("car.json"), serialized);
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File("car.json"), post);
 
     }
 }

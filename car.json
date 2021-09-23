@@ -1,1 +1,14 @@
-"{\r\n  \"id\" : 1,\r\n  \"title\" : \"Alma\",\r\n  \"user\" : \"Soviet\",\r\n  \"date\" : \"2021/09/28\",\r\n  \"status\" : \"IN_PROGRESS\",\r\n  \"description\" : \"Sample Post\",\r\n  \"comments\" : [Comment(id=1, user=Zoli, date=2021/09/28, description=Alma)]\r\n}"
+{
+  "id" : 1,
+  "title" : "Alma",
+  "user" : "Soviet",
+  "date" : "2021/09/28",
+  "status" : "IN_PROGRESS",
+  "description" : "Sample Post",
+  "comments" : [ {
+    "id" : "1",
+    "user" : "Zoli",
+    "date" : "2021/09/28",
+    "description" : "Alma"
+  } ]
+}
